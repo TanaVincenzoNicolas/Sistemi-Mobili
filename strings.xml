@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">TestIntent</string>
+    <string-array name="CDS">
+        <item>CLEII</item>
+        <item>SEGI</item>
+        <item>CLEA</item>
+        <item>CLEC</item>
+    </string-array>
+</resources>
