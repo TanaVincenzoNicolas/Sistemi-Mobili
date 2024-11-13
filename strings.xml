@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">FunzioniAvanzate</string>
+    <string name="activity_1">Activity 1</string>
+    <string name="go_to_activity_2">Go to Activity 2</string>
+    <string name="finish">Finish</string>
+    <string name="inset_something">Inset Something</string>
+</resources>
