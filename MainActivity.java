@@ -4,6 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import it.unich.studenti.tana.database.db.AppDatabase;
+import it.unich.studenti.tana.database.db.User;
+import it.unich.studenti.tana.database.db.UserDao;
+
 public class MainActivity extends AppCompatActivity {
 
     /*
@@ -20,9 +24,28 @@ public class MainActivity extends AppCompatActivity {
      Abbiamo creato un package "db"
     */
 
+
+    AppDatabase db;
+    // I database NON possono essere usati nel main thread
+
+    UserDao userDao;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        if(db == null){                                                 // Come i PDO di php
+            Thread dbThread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    db = AppDatabase.getDatabase(getApplicationContext());
+                    userDao = db.userDao();
+                    User paolo = new User("Paolo", "Rossi");
+                    userDao.insert(paolo);
+                }
+            });
+            dbThread.start();
+            // Per visualizzare il database -> App Insepction
+        }
     }
 }
